@@ -1,5 +1,5 @@
 
-package codealphaproject.Task1;
+package Task1;
 import java.awt.*;
 import javax.swing.*;
 

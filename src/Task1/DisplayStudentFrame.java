@@ -1,4 +1,4 @@
-package codealphaproject.Task1;
+package Task1;
 
 import java.awt.*;
 import java.util.List;

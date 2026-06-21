@@ -1,5 +1,5 @@
 
-package codealphaproject.Task1;
+package Task1;
 
 public class StudentGradeTrackerGui {
     public static void main(String []args){
