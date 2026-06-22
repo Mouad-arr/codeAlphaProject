@@ -1,0 +1,4 @@
+AAPL,Apple,120.0,1000
+TSLA,Tesla,250.0,800
+MSFT,Microsoft,180.0,1200
+NVDA,Nvidia,450.0,900

@@ -1,5 +1,11 @@
 package Task2;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +22,7 @@ public class Stock {
         this.price=price;
         this.quantity=quantity;
         if(this.quantity>0)
-            stocks.add(this);
+            Stock.addStock(this);
     }
     
     public void setNewPrice(double price){
@@ -50,7 +56,6 @@ public class Stock {
     public static boolean addStock(Stock s){
         if(Stock.getStock(s.getSymbol())!=null || s.getQuantity()==0)
             return false;
- 
         stocks.add(s);
         return true;
     }
@@ -58,6 +63,7 @@ public class Stock {
         for(Stock s : stocks){
             if(s.getSymbol().equals(symbol)){
                 stocks.remove(s);
+                Stock.saveStocks(stocks);
                 return true;
             }
         }
@@ -74,5 +80,47 @@ public class Stock {
     
     public static List<Stock> getStocks(){
         return stocks;
+    }
+    
+    public static void loadStocks(){
+        try (BufferedReader br = new BufferedReader(new FileReader("stocks.txt"))) {
+            String line;
+
+            while ( ( line = br.readLine() ) != null ) {
+                String[] parts = line.split(",");
+                
+                String symbol = parts[0];
+                String name = parts[1];
+                double price = Double.parseDouble(parts[2]);
+                int quantity = Integer.parseInt(parts[3]);
+
+                new Stock(symbol, name, price, quantity );
+            }
+            
+
+        } catch (IOException e) {
+            
+        }
+         
+    }
+    public static void saveStocks(List<Stock> stocks) {
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("stocks.txt"))) {
+
+            for (Stock s : stocks) {
+
+                bw.write(
+                    s.getSymbol() + "," +
+                    s.getName() + "," +
+                    s.getPrice() + "," +
+                    s.getQuantity()
+                );
+
+                bw.newLine();
+            }
+
+        } catch (IOException e) {
+            
+        }
     }
 }
