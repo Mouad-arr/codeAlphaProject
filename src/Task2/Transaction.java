@@ -29,8 +29,8 @@ public class Transaction {
                Stock.addStock(s);
            u.setBalance(u.getBalance()+(s.getPrice()*quantity));
         }
-        Stock.saveStocks(Stock.getStocks());
-        
+        //Stock.saveStocks(Stock.getStocks());
+        Stock.saveStocksInDb(Stock.getStocks());
     }
     public int getId(){
         return this.id;
